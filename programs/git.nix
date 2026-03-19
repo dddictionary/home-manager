@@ -4,8 +4,8 @@
     enable = true;
 
     settings = {
-      user.name = "Abrar Habib";
-      user.email = "abrarhabib285@gmail.com";
+      user.name = lib.mkDefault "Abrar Habib";
+      user.email = lib.mkDefault "abrarhabib285@gmail.com";
 
       alias = {
         co = "checkout";
