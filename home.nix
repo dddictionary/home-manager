@@ -9,6 +9,7 @@
     ./programs/git.nix
     ./programs/terminal.nix
     ./programs/tmux.nix
+    ./programs/kitty.nix
     ./programs/zsh.nix
     ./programs/claude/claude.nix
     ./files/gitignore.nix
