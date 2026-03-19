@@ -7,14 +7,10 @@
 
   imports = [
     ./programs/git.nix
-    ./programs/starship.nix
     ./programs/terminal.nix
     ./programs/tmux.nix
     ./programs/direnv.nix
     ./programs/zsh.nix
-    ./programs/vscode.nix
-    ./files/ghostty.nix
-    ./files/cursor.nix
     ./files/gitignore.nix
     ./files/graphite.nix
     ./files/keybindings.nix
