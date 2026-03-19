@@ -14,23 +14,29 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nixvim-config, ... }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
       homeConfigurations = {
-        abrar = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [
-            ./home.nix
-          ];
-
+        # macOS: home-manager switch --flake .#darwin
+        "darwin" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [ ./home.nix ];
           extraSpecialArgs = {
-            inherit nixvim-config system;
+            inherit nixvim-config;
+            system = "aarch64-darwin";
             features = [];
             homeDirectory = "/Users/abrar";
+          };
+        };
+
+        # Linux: home-manager switch --flake .#linux
+        "linux" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [ ./home.nix ];
+          extraSpecialArgs = {
+            inherit nixvim-config;
+            system = "x86_64-linux";
+            features = [];
+            homeDirectory = "/home/abrar";
           };
         };
       };
