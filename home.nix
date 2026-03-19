@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixvim-config ? null, system, features ? [], homeDirectory, ... }:
+{ config, pkgs, lib, nixvim-config ? null, system, self ? null, features ? [], homeDirectory, ... }:
 
 {
   home.username = "abrar";
@@ -16,6 +16,9 @@
     ./files/graphite.nix
     ./files/keybindings.nix
   ];
+
+  # Powerlevel10k config — symlink to ~/.p10k.zsh
+  home.file.".p10k.zsh".source = ./programs/p10k-config/p10k.zsh;
 
   home.packages = (with pkgs; [
     ripgrep
@@ -40,6 +43,8 @@
     wget
     httpie
     nerd-fonts.blex-mono
+    zsh-powerlevel10k
+    zsh-completions
   ]) ++ lib.optionals (nixvim-config != null) [
     nixvim-config.packages.${system}.default
   ];
@@ -56,4 +61,10 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.home-manager.enable = true;
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper.enable = true;
+    settings.editor = "nvim";
+  };
 }

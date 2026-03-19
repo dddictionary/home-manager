@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 {
   programs.zsh = {
     enable = true;
@@ -23,6 +22,7 @@
       COMPLETION_WAITING_DOTS = "true";
       ZSH_CUSTOM = "$HOME/.oh-my-zsh/custom";
       DISABLE_AUTO_TITLE = "true";
+      ZSH_DISABLE_COMPFIX = "true";
     };
 
     history = {
@@ -38,30 +38,40 @@
       theme = "";
       plugins = [
         "git"
-        "eza"
         "fzf"
         "tmux"
+      ] ++ lib.optionals pkgs.stdenv.isDarwin [
+        "eza"
         "macos"
       ];
     };
 
-    initExtra = ''
+    # p10k via nix plugin (works on NixOS without homebrew)
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+    ];
+
+    initContent = ''
+      # === Extra completions from nixpkgs ===
+      fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
+
       # === Powerlevel10k instant prompt (must be near top) ===
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
 
-      # === Homebrew (must come before plugins that depend on brew-installed tools) ===
-      [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
-      export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-      # === Powerlevel10k theme ===
-      source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+      # === Powerlevel10k config ===
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-      # === Atuin shell history ===
-      . "$HOME/.atuin/bin/env"
-      eval "$(atuin init zsh --disable-up-arrow)"
+      # === Homebrew (macOS only) ===
+      [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+      # === Atuin shell history (if installed) ===
+      [ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env" && eval "$(atuin init zsh --disable-up-arrow)"
 
       # === Local bin env ===
       [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
