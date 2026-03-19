@@ -1,4 +1,4 @@
-{ config, pkgs, lib, features ? [], homeDirectory, ... }:
+{ config, pkgs, lib, nixvim-config ? null, system, features ? [], homeDirectory, ... }:
 
 {
   home.username = "abrar";
@@ -9,14 +9,13 @@
     ./programs/git.nix
     ./programs/terminal.nix
     ./programs/tmux.nix
-    ./programs/direnv.nix
     ./programs/zsh.nix
     ./files/gitignore.nix
     ./files/graphite.nix
     ./files/keybindings.nix
   ];
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     ripgrep
     fd
     fzf
@@ -38,9 +37,9 @@
     curl
     wget
     httpie
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-    nerd-fonts.hack
+    nerd-fonts.blex-mono
+  ]) ++ lib.optionals (nixvim-config != null) [
+    nixvim-config.packages.${system}.default
   ];
 
   home.sessionVariables = {
