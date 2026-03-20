@@ -1,18 +1,16 @@
-{ config, lib, pkgs, pkgs-unstable ? null, spicetify-nix ? null, ... }:
+{ config, lib, pkgs, spicetify-nix ? null, ... }:
 
 let
   spicePkgs = if spicetify-nix != null
     then spicetify-nix.legacyPackages.${pkgs.system}
     else null;
 in
-lib.mkIf pkgs.stdenv.isLinux {
-  imports = lib.optionals (spicetify-nix != null) [
-    spicetify-nix.homeManagerModules.default
-  ];
+{
+  config = lib.mkIf pkgs.stdenv.isLinux {
 
   # NixOS switch aliases
   programs.zsh.shellAliases = {
-    switch-home = "home-manager switch --flake ~/nixos/";
+    switch-home = "home-manager switch --flake ~/home-manager#linux";
     switch-nix = "sudo nixos-rebuild switch --flake ~/nixos/#nixos";
     switch-both = "switch-home && switch-nix";
   };
@@ -28,9 +26,8 @@ lib.mkIf pkgs.stdenv.isLinux {
         withOpenASAR = true;
         withVencord = true;
       })
-      teams-for-linux
       evince
-      neofetch
+      fastfetch
       vesktop
       zoom-us
       styluslabs-write-bin
@@ -50,9 +47,8 @@ lib.mkIf pkgs.stdenv.isLinux {
       pandoc
       aoc-cli
     ])
-    ++ lib.optionals (pkgs-unstable != null) (with pkgs-unstable; [
+    ++ (with pkgs; [
       postman
-      vscode
       ani-cli
       zed-editor
     ]);
@@ -65,5 +61,6 @@ lib.mkIf pkgs.stdenv.isLinux {
     ];
     theme = spicePkgs.themes.onepunch;
     colorScheme = "dark";
+  };
   };
 }

@@ -11,9 +11,13 @@
       url = "github:dddictionary/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim-config, ... }:
+  outputs = { self, nixpkgs, home-manager, nixvim-config, spicetify-nix, ... }:
     {
       homeConfigurations = {
         # macOS: home-manager switch --flake .#darwin
@@ -31,9 +35,9 @@
         # Linux: home-manager switch --flake .#linux
         "linux" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./home.nix ];
+          modules = [ ./home.nix spicetify-nix.homeManagerModules.default ];
           extraSpecialArgs = {
-            inherit nixvim-config;
+            inherit nixvim-config spicetify-nix;
             system = "x86_64-linux";
             features = [];
             homeDirectory = "/home/abrar";
