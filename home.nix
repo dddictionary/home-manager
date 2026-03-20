@@ -12,6 +12,7 @@
     ./programs/kitty.nix
     ./programs/zsh.nix
     ./programs/claude/claude.nix
+    ./programs/linux-desktop.nix
     ./files/gitignore.nix
     ./files/graphite.nix
     ./files/keybindings.nix
