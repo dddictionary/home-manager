@@ -38,8 +38,8 @@
       bind -n M-Up select-pane -U
       bind -n M-Down select-pane -D
 
-      # Extended keys for Pi (Shift+Enter, Ctrl+Enter support)
-      set -g extended-keys on
+      # Extended keys (Shift+Enter, Ctrl+Enter support)
+      set -g extended-keys always
       set -g extended-keys-format csi-u
       set -as terminal-features 'xterm*:extkeys'
 

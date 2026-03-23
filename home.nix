@@ -12,7 +12,8 @@
     ./programs/kitty.nix
     ./programs/zsh.nix
     ./programs/claude/claude.nix
-    ./programs/linux-desktop.nix
+    ./programs/linux
+    ./programs/spicetify.nix
     ./files/gitignore.nix
     ./files/graphite.nix
     ./files/keybindings.nix
@@ -49,6 +50,13 @@
   ]) ++ lib.optionals (nixvim-config != null) [
     nixvim-config.packages.${system}.default
   ];
+
+  home.pointerCursor = {
+    name = "macOS";
+    package = pkgs.apple-cursor;
+    size = 24;
+    gtk.enable = true;
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";

@@ -32,10 +32,22 @@
           };
         };
 
-        # Linux: home-manager switch --flake .#linux
+        # Linux (Plasma): home-manager switch --flake .#linux
         "linux" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [ ./home.nix spicetify-nix.homeManagerModules.default ];
+          extraSpecialArgs = {
+            inherit nixvim-config spicetify-nix;
+            system = "x86_64-linux";
+            features = [];
+            homeDirectory = "/home/abrar";
+          };
+        };
+
+        # Linux (Hyprland): home-manager switch --flake .#hyprland
+        "hyprland" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [ ./home.nix ./programs/hyprland.nix ./programs/waybar.nix spicetify-nix.homeManagerModules.default ];
           extraSpecialArgs = {
             inherit nixvim-config spicetify-nix;
             system = "x86_64-linux";

@@ -14,7 +14,10 @@ home-manager/
 │   ├── terminal.nix
 │   ├── tmux.nix
 │   ├── kitty.nix
-│   ├── linux-desktop.nix   # Linux-only packages, aliases, spicetify
+│   ├── linux/              # Linux-only config
+│   │   ├── packages.nix    # Linux desktop packages
+│   │   └── rebuilder.nix   # Desktop switching shell functions
+│   ├── spicetify.nix       # Spotify theming (cross-platform)
 │   └── claude/             # Claude Code config
 └── files/
     ├── gitignore.nix

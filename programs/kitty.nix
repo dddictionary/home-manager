@@ -20,6 +20,7 @@
 
     keybindings = {
       "ctrl+backspace" = "send_text all \\x17";
+      "shift+enter" = "send_text all \\x1b[13;2u";
     };
 
     # kanagawabones theme via kitty's theme kitten
