@@ -2,7 +2,7 @@
 
 let
   spicePkgs = if spicetify-nix != null
-    then spicetify-nix.legacyPackages.${pkgs.system}
+    then spicetify-nix.packages.${pkgs.system}
     else null;
 in
 {
