@@ -13,7 +13,6 @@
     ./programs/zsh.nix
     ./programs/claude/claude.nix
     ./programs/linux
-    ./programs/spicetify.nix
     ./files/gitignore.nix
     ./files/graphite.nix
     ./files/keybindings.nix
