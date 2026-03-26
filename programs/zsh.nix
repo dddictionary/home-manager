@@ -98,28 +98,28 @@
         create_session_with_windows() {
           local session_name=$1
           local working_dir=$2
-          tmux new-session -d -s "$session_name" -c "$working_dir"
-          tmux new-window -d -t "$session_name" -c "$working_dir"
-          tmux new-window -d -t "$session_name" -c "$working_dir"
-          tmux select-window -t "$session_name:1"
+          command tmux new-session -d -s "$session_name" -c "$working_dir"
+          command tmux new-window -d -t "$session_name" -c "$working_dir"
+          command tmux new-window -d -t "$session_name" -c "$working_dir"
+          command tmux select-window -t "$session_name:1"
         }
 
         if [[ -n "$TMUX" ]]; then
-          local current_session=$(tmux display-message -p '#S')
+          local current_session=$(command tmux display-message -p '#S')
           if [[ "$current_session" != "$worktree_name" ]]; then
-            if ! tmux has-session -t "$worktree_name" 2>/dev/null; then
+            if ! command tmux has-session -t "$worktree_name" 2>/dev/null; then
               create_session_with_windows "$worktree_name" "$PWD"
             fi
-            tmux switch-client -t "$worktree_name"
+            command tmux switch-client -t "$worktree_name"
           else
             echo "Already in worktree session: $worktree_name"
           fi
         else
-          if ! tmux has-session -t "$worktree_name" 2>/dev/null; then
+          if ! command tmux has-session -t "$worktree_name" 2>/dev/null; then
             create_session_with_windows "$worktree_name" "$PWD"
-            tmux attach-session -t "$worktree_name"
+            command tmux attach-session -t "$worktree_name"
           else
-            tmux attach-session -t "$worktree_name"
+            command tmux attach-session -t "$worktree_name"
           fi
         fi
       }
