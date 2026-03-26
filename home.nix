@@ -16,10 +16,8 @@
     ./files/gitignore.nix
     ./files/graphite.nix
     ./files/keybindings.nix
+    ./programs/p10k
   ];
-
-  # Powerlevel10k config — symlink to ~/.p10k.zsh
-  home.file.".p10k.zsh".source = ./programs/p10k-config/p10k.zsh;
 
   home.packages = (with pkgs; [
     ripgrep
