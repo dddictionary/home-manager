@@ -1,9 +1,4 @@
 { pkgs, ... }:
-let
-  # Switch theme here: kanagawa or rose-pine-moon
-  # theme = import ./themes/kanagawa.nix { inherit pkgs; };
-  # theme = import ./themes/rose-pine-moon.nix { inherit pkgs; };
-in
 {
   programs.tmux = {
     enable = true;
@@ -12,8 +7,19 @@ in
     keyMode = "vi";
     mouse = true;
 
-    # Temporarily disabled - causes server startup deadlock
-    # plugins = [ theme ];
+    plugins = with pkgs.tmuxPlugins; [
+      {
+        plugin = rose-pine;
+        extraConfig = ''
+          set -g @rose_pine_variant 'moon'
+          set -g @rose_pine_host 'off'
+          set -g @rose_pine_user 'off'
+          set -g @rose_pine_date_time '%Y-%m-%d %H:%M:%S'
+          set -g @rose_pine_show_current_program 'on'
+          set -g @rose_pine_show_pane_directory 'off'
+        '';
+      }
+    ];
 
     extraConfig = ''
       # Reload config
