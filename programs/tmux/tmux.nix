@@ -2,7 +2,7 @@
 let
   # Switch theme here: kanagawa or rose-pine-moon
   # theme = import ./themes/kanagawa.nix { inherit pkgs; };
-  theme = import ./themes/rose-pine-moon.nix { inherit pkgs; };
+  # theme = import ./themes/rose-pine-moon.nix { inherit pkgs; };
 in
 {
   programs.tmux = {
@@ -12,7 +12,8 @@ in
     keyMode = "vi";
     mouse = true;
 
-    plugins = [ theme ];
+    # Temporarily disabled - causes server startup deadlock
+    # plugins = [ theme ];
 
     extraConfig = ''
       # Reload config
