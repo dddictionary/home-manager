@@ -99,8 +99,8 @@
           local session_name=$1
           local working_dir=$2
           tmux new-session -d -s "$session_name" -c "$working_dir"
-          tmux new-window -t "$session_name" -c "$working_dir"
-          tmux new-window -t "$session_name" -c "$working_dir"
+          tmux new-window -d -t "$session_name" -c "$working_dir"
+          tmux new-window -d -t "$session_name" -c "$working_dir"
           tmux select-window -t "$session_name:1"
         }
 
