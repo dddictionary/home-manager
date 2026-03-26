@@ -23,12 +23,13 @@
         # macOS: home-manager switch --flake .#darwin
         "darwin" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [ ./home.nix ];
+          modules = [ ./home.nix spicetify-nix.homeManagerModules.default ];
           extraSpecialArgs = {
-            inherit nixvim-config;
+            inherit nixvim-config spicetify-nix;
             system = "aarch64-darwin";
             features = [];
-            homeDirectory = "/Users/abrar";
+            username = "abrarhabib";
+            homeDirectory = "/Users/abrarhabib";
           };
         };
 
@@ -40,6 +41,7 @@
             inherit nixvim-config spicetify-nix;
             system = "x86_64-linux";
             features = [];
+            username = "abrar";
             homeDirectory = "/home/abrar";
           };
         };
@@ -52,6 +54,7 @@
             inherit nixvim-config spicetify-nix;
             system = "x86_64-linux";
             features = [];
+            username = "abrar";
             homeDirectory = "/home/abrar";
           };
         };

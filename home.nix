@@ -1,15 +1,15 @@
-{ config, pkgs, lib, nixvim-config ? null, system, self ? null, features ? [], homeDirectory, ... }:
+{ config, pkgs, lib, nixvim-config ? null, system, self ? null, features ? [], username, homeDirectory, ... }:
 
 {
-  home.username = "abrar";
+  home.username = username;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "24.11";
 
   imports = [
     ./programs/git.nix
     ./programs/terminal.nix
-    ./programs/tmux.nix
-    ./programs/kitty.nix
+    ./programs/tmux/tmux.nix
+    ./programs/kitty/kitty.nix
     ./programs/zsh.nix
     ./programs/claude/claude.nix
     ./programs/linux
@@ -51,7 +51,7 @@
     nixvim-config.packages.${system}.default
   ];
 
-  home.pointerCursor = {
+  home.pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
     name = "macOS";
     package = pkgs.apple-cursor;
     size = 24;

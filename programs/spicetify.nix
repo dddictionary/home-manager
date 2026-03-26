@@ -12,7 +12,7 @@ in
       enabledExtensions = with spicePkgs.extensions; [
         shuffle
       ];
-      theme = spicePkgs.themes.onepunch;
+      theme = spicePkgs.themes.blossom;
       colorScheme = "dark";
     };
   };
