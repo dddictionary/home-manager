@@ -8,6 +8,7 @@
         racket
         mpv
         vlc
+        spotify
         (discord-canary.override {
           withOpenASAR = true;
           withVencord = true;
