@@ -44,6 +44,7 @@
     nerd-fonts.blex-mono
     zsh-powerlevel10k
     zsh-completions
+    k9s
   ]) ++ lib.optionals (nixvim-config != null) [
     nixvim-config.packages.${system}.default
   ];
