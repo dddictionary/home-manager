@@ -25,7 +25,7 @@
 
         # Autostart
         exec-once = [
-          "waybar & hyprpaper & discord"
+          "waybar & discord"
         ];
 
         # Environment variables
@@ -260,15 +260,31 @@
       config.common.default = "*";
     };
 
+    services.hyprpaper.enable = true;
+
+    xdg.configFile."hypr/hyprpaper.conf" = {
+      force = true;
+      onChange = "systemctl --user restart hyprpaper.service";
+      text = ''
+        wallpaper {
+            monitor =
+            path = /home/abrar/Pictures/wallpapers/wallhaven-lywpjl.jpg
+            fit_mode = cover
+        }
+
+        ipc = true
+        splash = false
+      '';
+    };
+
     # Supporting packages for Hyprland
     home.packages = with pkgs; [
-      hyprpaper
       wofi
       hyprshot
       playerctl
       brightnessctl
       kdePackages.dolphin
-      swww
+      awww
     ];
   };
 }
