@@ -13,8 +13,8 @@
       settings = {
         # Monitors
         monitor = [
-          "DP-2, 1920x1080@75, 1920x0, 1"
-          "HDMI-A-1, 1920x1080@75, 0x0, 1"
+          "DP-1, 1920x1080@239.76, 0x0, 1"
+          "HDMI-A-1, 1920x1080@165, 1920x0, 1"
         ];
 
         # Programs
@@ -248,6 +248,16 @@
           match:pin = 0
         }
       '';
+    };
+
+    # XDG portal configuration
+    xdg.portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gtk
+      ];
+      config.common.default = "*";
     };
 
     # Supporting packages for Hyprland
