@@ -14,6 +14,7 @@
       l = "eza -la --icons --git";
       cd = "z";
       cat = "bat";
+      ff = "fastfetch";
     };
 
     sessionVariables = {

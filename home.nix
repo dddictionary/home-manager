@@ -10,6 +10,7 @@
     ./programs/terminal.nix
     ./programs/tmux/tmux.nix
     ./programs/kitty/kitty.nix
+    ./programs/fastfetch.nix
     ./programs/zsh.nix
     ./programs/claude/claude.nix
     ./programs/linux
@@ -45,6 +46,9 @@
     zsh-powerlevel10k
     zsh-completions
     k9s
+  ]) ++ lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
+    pam-reattach
+    spotify
   ]) ++ lib.optionals (nixvim-config != null) [
     nixvim-config.packages.${system}.default
   ];

@@ -16,10 +16,11 @@ in
     settings = {
       linux_display_server = "auto";
       cursor_shape = "beam";
-      open_url_with = "firefox";
+      open_url_with = "default";
       detect_urls = true;
       allow_remote_control = "yes";
       editor = "nvim";
+      shell_integration = "enabled";
 
       # iTerm2-style tabs
       tab_bar_edge = "top";
@@ -28,6 +29,11 @@ in
       tab_title_template = "{index}: {title}";
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
+
+      # macOS
+      macos_option_as_alt = "left";
+      macos_titlebar_color = "background";
+      macos_quit_when_last_window_closed = "yes";
     } // theme;
 
     keybindings = {

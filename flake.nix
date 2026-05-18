@@ -15,15 +15,19 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    textfox = {
+      url = "github:adriankarlen/textfox";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim-config, spicetify-nix, ... }:
+  outputs = { self, nixpkgs, home-manager, nixvim-config, spicetify-nix, textfox, ... }:
     {
       homeConfigurations = {
         # macOS: home-manager switch --flake .#darwin
         "darwin" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [ ./home.nix spicetify-nix.homeManagerModules.default ];
+          modules = [ ./home.nix spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default ];
           extraSpecialArgs = {
             inherit nixvim-config spicetify-nix;
             system = "aarch64-darwin";
@@ -36,7 +40,7 @@
         # Linux (Plasma): home-manager switch --flake .#linux
         "linux" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./home.nix spicetify-nix.homeManagerModules.default ];
+          modules = [ ./home.nix spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default ];
           extraSpecialArgs = {
             inherit nixvim-config spicetify-nix;
             system = "x86_64-linux";
@@ -49,7 +53,7 @@
         # Linux (Hyprland): home-manager switch --flake .#hyprland
         "hyprland" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./home.nix ./programs/hyprland.nix ./programs/waybar.nix spicetify-nix.homeManagerModules.default ];
+          modules = [ ./home.nix ./programs/hyprland.nix ./programs/waybar.nix spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default ];
           extraSpecialArgs = {
             inherit nixvim-config spicetify-nix;
             system = "x86_64-linux";

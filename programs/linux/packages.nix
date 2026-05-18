@@ -14,7 +14,6 @@
           withVencord = true;
         })
         evince
-        fastfetch
         vesktop
         zoom-us
         styluslabs-write-bin

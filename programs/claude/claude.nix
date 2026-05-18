@@ -3,10 +3,8 @@
   programs.claude-code = {
     enable = true;
     settings = {
-      model = "opus";
-      alwaysThinkingEnabled = false;
+      model = "claude-opus-4-7";
       promptSuggestionEnabled = false;
-      enabledPlugins = { };
       statusLine = {
         type = "command";
         command = "claude-statusline";
