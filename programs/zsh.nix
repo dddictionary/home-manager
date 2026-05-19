@@ -19,6 +19,8 @@
       cat = "bat";
       ff = "fastfetch";
       k = "kubectl";
+    } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
     };
 
     sessionVariables = {
