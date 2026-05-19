@@ -49,6 +49,7 @@
     zsh-powerlevel10k
     zsh-completions
     k9s
+    kubectl
     age
     sops
     ssh-to-age
