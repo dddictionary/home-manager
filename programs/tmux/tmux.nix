@@ -52,6 +52,9 @@
       set -g status-right-length 100
       set -g status-left-length 100
       set -g status-interval 1
+
+      # Allow terminal escape passthrough (kitty graphics for fastfetch, etc.)
+      set -g allow-passthrough on
     '';
   };
 }

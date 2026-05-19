@@ -1,10 +1,17 @@
-{ ... }:
-
+{ config, pkgs, lib, ... }:
 {
   programs.fastfetch = {
     enable = true;
     settings = {
-      "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json";
+      logo = {
+        source = "${./../files/fastfetch/logo.jpg}";
+        type = "kitty";
+        width = 40;
+        padding.top = 1;
+      };
+      display = {
+        separator = "  ";
+      };
       modules = [
         "title"
         "separator"
@@ -14,23 +21,21 @@
         "uptime"
         "packages"
         "shell"
+        "editor"
         "display"
-        "de"
+        "lm"
         "wm"
-        "wmtheme"
         "theme"
         "icons"
+        "font"
         "cursor"
         "terminal"
-        "terminalfont"
         "cpu"
         "gpu"
         "memory"
         "swap"
         "disk"
         "localip"
-        "battery"
-        "poweradapter"
         "locale"
         "break"
         "colors"

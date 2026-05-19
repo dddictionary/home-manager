@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixvim-config ? null, system, self ? null, features ? [], username, homeDirectory, ... }:
+{ config, pkgs, lib, nixvim-config ? null, llm-agents ? null, system, self ? null, features ? [], username, homeDirectory, ... }:
 
 {
   home.username = username;
@@ -12,7 +12,10 @@
     ./programs/kitty/kitty.nix
     ./programs/fastfetch.nix
     ./programs/zsh.nix
+    ./programs/yazi.nix
     ./programs/claude/claude.nix
+    ./programs/pi/pi.nix
+    ./programs/actual
     ./programs/linux
     ./files/gitignore.nix
     ./files/graphite.nix
@@ -26,7 +29,6 @@
     fzf
     jq
     bat
-    eza
     zoxide
     tmux
     viddy
@@ -42,10 +44,14 @@
     curl
     wget
     httpie
+    dnsutils
     nerd-fonts.blex-mono
     zsh-powerlevel10k
     zsh-completions
     k9s
+    age
+    sops
+    ssh-to-age
   ]) ++ lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
     pam-reattach
     spotify
@@ -60,9 +66,27 @@
     gtk.enable = true;
   };
 
+  gtk = lib.mkIf pkgs.stdenv.isLinux {
+    enable = true;
+    theme = {
+      name = "Kanagawa-BL";
+      package = pkgs.kanagawa-gtk-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
+  qt = lib.mkIf pkgs.stdenv.isLinux {
+    enable = true;
+    platformTheme.name = "gtk";
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     PAGER = "less";
+    KUBECONFIG = "${config.home.homeDirectory}/.kube/istaroth-config";
   };
 
   home.sessionPath = [

@@ -39,7 +39,7 @@ in
     keybindings = {
       "ctrl+backspace" = "send_text all \\x17";
       "shift+enter" = "send_text all \\x1b[13;2u";
-      "super+w" = "close_tab";
+      "ctrl+shift+w" = "close_tab";
       "super+t" = "new_tab";
       "super+1" = "goto_tab 1";
       "super+2" = "goto_tab 2";

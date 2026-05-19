@@ -20,12 +20,13 @@
         # Programs
         "$terminal" = "kitty";
         "$fileManager" = "dolphin";
-        "$menu" = "wofi --show drun";
+        "$menu" = "vicinae toggle";
         "$mainMod" = "SUPER";
 
         # Autostart
         exec-once = [
-          "waybar & discord"
+          "waybar"
+          "discordcanary"
         ];
 
         # Environment variables
@@ -146,12 +147,12 @@
 
         # Keybindings
         bind = [
-          "$mainMod, Q, exec, $terminal"
-          "$mainMod, C, killactive,"
+          "$mainMod, Return, exec, $terminal"
+          "$mainMod, W, killactive,"
           "$mainMod, M, exit,"
           "$mainMod, E, exec, $fileManager"
           "$mainMod, V, togglefloating,"
-          "$mainMod, R, exec, $menu"
+          "ALT, Space, exec, $menu"
           "$mainMod, P, pseudo,"
           "$mainMod, J, layoutmsg, togglesplit"
           ", PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots"
@@ -186,6 +187,9 @@
           "$mainMod SHIFT, 8, movetoworkspace, 8"
           "$mainMod SHIFT, 9, movetoworkspace, 9"
           "$mainMod SHIFT, 0, movetoworkspace, 10"
+
+          # Move window to other monitor
+          "$mainMod SHIFT, Tab, movewindow, mon:+1"
 
           # Move workspace to monitor
           "$mainMod SHIFT, LEFT, movecurrentworkspacetomonitor, -1"
@@ -223,19 +227,9 @@
           ", XF86AudioPrev, exec, playerctl previous"
         ];
 
-        # Window rules
-        windowrule = [
-        ];
       };
 
       extraConfig = ''
-        # Disable animations for wofi
-        windowrule {
-          name = no-anim-wofi
-          match:class = wofi
-          no_anim = on
-        }
-
         # Fix some dragging issues with XWayland
         windowrule {
           name = windowrule-xwayland-fix
@@ -279,12 +273,27 @@
 
     # Supporting packages for Hyprland
     home.packages = with pkgs; [
-      wofi
       hyprshot
       playerctl
       brightnessctl
       kdePackages.dolphin
       awww
     ];
+
+    services.vicinae = {
+      enable = true;
+      systemd = {
+        enable = true;
+        autoStart = true;
+      };
+      settings = {
+        theme = {
+          dark.name = "kanagawa";
+          light.name = "kanagawa";
+        };
+      };
+    };
+
+    xdg.dataFile."vicinae/themes/kanagawa.toml".source = ./vicinae/kanagawa.toml;
   };
 }

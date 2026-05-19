@@ -1,5 +1,13 @@
 { config, pkgs, lib, ... }:
 {
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    icons = "auto";
+    git = true;
+    extraOptions = [ "--group-directories-first" ];
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -7,14 +15,10 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ls = "eza --icons";
-      ll = "eza -la --icons --git";
-      la = "eza -a --icons";
-      lt = "eza --tree --icons";
-      l = "eza -la --icons --git";
       cd = "z";
       cat = "bat";
       ff = "fastfetch";
+      k = "kubectl";
     };
 
     sessionVariables = {

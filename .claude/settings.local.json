@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(eza --help)",
+      "Bash(fastfetch --version)",
+      "Bash(kitty --version)",
+      "Bash(chafa --version)",
+      "Bash(fastfetch --help-logo-type)",
+      "Bash(fastfetch --help logo-type)",
+      "Read(//tmp/**)",
+      "Bash(timeout 5 fastfetch --logo-type kitty --logo /home/abrar/home-manager/files/fastfetch/logo.jpg --logo-width 40 --logo-height 20 -l none-modules)",
+      "Bash(echo \"---EXIT: $?---\")",
+      "Bash(fastfetch --help logo-preserve-aspect-ratio)",
+      "WebFetch(domain:github.com)",
+      "Bash(lsblk -f)",
+      "Read(//etc/nixos/**)"
+    ]
+  }
+}

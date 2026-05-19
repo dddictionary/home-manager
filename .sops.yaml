@@ -1,0 +1,7 @@
+keys:
+  - &abrar age1hwgjw3up3p2nfsae2njnc82hmhn83jx2hx0h7n3m5yzumfalk4vs72ecn8
+creation_rules:
+  - path_regex: programs/actual/secrets\.yaml$
+    key_groups:
+      - age:
+          - *abrar

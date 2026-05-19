@@ -23,6 +23,12 @@
         obs-studio
         chromium
         gparted
+        overskride
+        thunar
+        thunar-volman
+        thunar-archive-plugin
+        tumbler
+        gvfs
 
         # Extra dev tools
         nixfmt
@@ -32,6 +38,10 @@
         unzip
         pandoc
         aoc-cli
+        gnumake
+
+        # Games
+        prismlauncher
       ])
       ++ (with pkgs; [
         postman

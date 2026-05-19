@@ -1,0 +1,79 @@
+[meta]
+version = 1
+name = "Kanagawa"
+description = "Kanagawabones-inspired dark palette matching the kitty theme"
+variant = "dark"
+inherits = "vicinae-dark"
+
+[colors.core]
+accent = "#7EB3C9"
+accent_foreground = "#1F1F28"
+background = "#1F1F28"
+foreground = "#DDD8BB"
+secondary_background = "#2A2A37"
+border = "#363644"
+
+[colors.main_window]
+border = "#363644"
+footer = { background = "colors.core.secondary_background" }
+
+[colors.settings_window]
+border = "#363644"
+
+[colors.accents]
+blue = "#7EB3C9"
+green = "#98BC6D"
+magenta = "#957FB8"
+orange = "#E5C283"
+red = "#E46A78"
+yellow = "#E5C283"
+cyan = "#7BC2DF"
+purple = "#A98FD2"
+
+[colors.shortcut]
+border = "colors.core.border"
+
+[colors.text]
+default = "colors.core.foreground"
+muted = "#A8A48D"
+danger = "#E46A78"
+success = "#98BC6D"
+placeholder = "#A8A48D"
+selection = { background = "#49473E", foreground = "#DDD8BB" }
+
+[colors.text.links]
+default = "#7EB3C9"
+visited = "#957FB8"
+
+[colors.input]
+border = "#363644"
+border_focus = "#7EB3C9"
+border_error = "#E46A78"
+
+[colors.button.primary]
+background = "#2A2A37"
+foreground = "#DDD8BB"
+hover = { background = "#363644" }
+focus = { outline = "colors.core.accent" }
+
+[colors.list.item.hover]
+foreground = "#DDD8BB"
+secondary_foreground = "#A8A48D"
+
+[colors.list.item.selection]
+background = "#363644"
+foreground = "#DDD8BB"
+secondary_background = "#363644"
+secondary_foreground = "#A8A48D"
+
+[colors.grid.item]
+background = "#2A2A37"
+hover = { outline = "#7EB3C9" }
+selection = { outline = "#7EB3C9" }
+
+[colors.scrollbars]
+background = "#363644"
+
+[colors.loading]
+bar = "#7EB3C9"
+spinner = "#7EB3C9"
