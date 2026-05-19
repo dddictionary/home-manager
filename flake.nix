@@ -48,7 +48,7 @@
       # macOS: home-manager switch --flake .#darwin
       "darwin" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [./home.nix spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
+        modules = [./home.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
         extraSpecialArgs = {
           inherit nixvim-config spicetify-nix llm-agents;
           system = "aarch64-darwin";
