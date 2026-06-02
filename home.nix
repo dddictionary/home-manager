@@ -36,7 +36,7 @@
     git
     gh
     delta
-    nodejs_20
+    nodejs_22
     python3
     ruby
     btop
