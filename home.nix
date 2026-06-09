@@ -37,6 +37,7 @@
     gh
     delta
     nodejs_22
+    oxfmt
     python3
     ruby
     btop

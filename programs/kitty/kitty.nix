@@ -55,5 +55,13 @@ in
       "super+8" = "goto_tab 8";
       "super+9" = "goto_tab 9";
     };
+
+    extraConfig = ''
+      # Open links with a plain click, or Ctrl+click even inside mouse-aware apps
+      # such as tmux/nvim. kitty's default is Ctrl+Shift+click; this adds Ctrl+click.
+      mouse_map left click ungrabbed mouse_handle_click selection link prompt
+      mouse_map ctrl+left release grabbed,ungrabbed mouse_handle_click link
+      mouse_map ctrl+left press grabbed discard_event
+    '';
   };
 }

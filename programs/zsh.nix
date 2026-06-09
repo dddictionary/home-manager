@@ -144,6 +144,13 @@
       # === Source local overrides for per-machine customization ===
       [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+      # === Xcode / SDKROOT sanity ===
+      # Some Nix shells can leave SDKROOT pointing at a garbage-collected apple-sdk.
+      # If it is stale, unset it so xcrun/Xcode can select the current SDK normally.
+      if [[ -n "''${SDKROOT:-}" && ! -d "$SDKROOT" ]]; then
+        unset SDKROOT
+      fi
+
       # === Initialize zoxide (must be at the very end) ===
       export _ZO_DOCTOR=0
       eval "$(zoxide init zsh)"

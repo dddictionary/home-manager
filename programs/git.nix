@@ -23,6 +23,7 @@
 
       init.defaultBranch = "main";
       pull.rebase = true;
+      rebase.updateRefs = true;
       push.autoSetupRemote = true;
       core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
       core.pager = "delta";
