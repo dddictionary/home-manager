@@ -38,6 +38,8 @@ in
 
     keybindings = {
       "ctrl+backspace" = "send_text all \\x17";
+      # Cmd+Delete clears the current input line in shells/tmux/TUIs (Pi/Claude).
+      "super+backspace" = "send_text all \\x01\\x0b";
       # Make Option+Arrow behave like readline/zsh word navigation.
       # Sending ESC-b/ESC-f avoids tmux treating these as M-Left/M-Right pane switches.
       "alt+left" = "send_text all \\x1bb";
