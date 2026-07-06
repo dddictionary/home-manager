@@ -26,6 +26,9 @@
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
     };
+    herdr = {
+      url = "github:ogulcancelik/herdr";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +44,7 @@
     textfox,
     vicinae,
     llm-agents,
+    herdr,
     sops-nix,
     ...
   }: {
@@ -50,7 +54,7 @@
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         modules = [./home.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
         extraSpecialArgs = {
-          inherit nixvim-config spicetify-nix llm-agents;
+          inherit nixvim-config spicetify-nix llm-agents herdr;
           system = "aarch64-darwin";
           features = [];
           username = "abrarhabib";
@@ -63,7 +67,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [./home.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
         extraSpecialArgs = {
-          inherit nixvim-config spicetify-nix llm-agents;
+          inherit nixvim-config spicetify-nix llm-agents herdr;
           system = "x86_64-linux";
           features = [];
           username = "abrar";
@@ -76,7 +80,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [./home.nix ./programs/hyprland.nix ./programs/waybar.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default vicinae.homeManagerModules.default];
         extraSpecialArgs = {
-          inherit nixvim-config spicetify-nix llm-agents;
+          inherit nixvim-config spicetify-nix llm-agents herdr;
           system = "x86_64-linux";
           features = [];
           username = "abrar";
