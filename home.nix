@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixvim-config ? null, llm-agents ? null, herdr ? null, system, self ? null, features ? [], username, homeDirectory, ... }:
+{ config, pkgs, lib, nixvim-config ? null, llm-agents ? null, system, self ? null, features ? [], username, homeDirectory, ... }:
 
 {
   home.username = username;
@@ -59,8 +59,6 @@
     spotify
   ]) ++ lib.optionals (nixvim-config != null) [
     nixvim-config.packages.${system}.default
-  ] ++ lib.optionals (herdr != null) [
-    herdr.packages.${system}.default
   ];
 
   home.pointerCursor = lib.mkIf pkgs.stdenv.isLinux {

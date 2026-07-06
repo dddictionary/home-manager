@@ -47,14 +47,22 @@
     herdr,
     sops-nix,
     ...
-  }: {
+  }: let
+    # herdr is owned by this flake: consumers that import these modules get it
+    # from our locked input, without declaring herdr themselves.
+    herdrModule = { pkgs, ... }: {
+      home.packages = [ herdr.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    };
+  in {
+    homeManagerModules.herdr = herdrModule;
+
     homeConfigurations = {
       # macOS: home-manager switch --flake .#darwin
       "darwin" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [./home.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
+        modules = [./home.nix herdrModule sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
         extraSpecialArgs = {
-          inherit nixvim-config spicetify-nix llm-agents herdr;
+          inherit nixvim-config spicetify-nix llm-agents;
           system = "aarch64-darwin";
           features = [];
           username = "abrarhabib";
@@ -65,9 +73,9 @@
       # Linux (Plasma): home-manager switch --flake .#plasma
       "plasma" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [./home.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
+        modules = [./home.nix herdrModule sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default];
         extraSpecialArgs = {
-          inherit nixvim-config spicetify-nix llm-agents herdr;
+          inherit nixvim-config spicetify-nix llm-agents;
           system = "x86_64-linux";
           features = [];
           username = "abrar";
@@ -78,9 +86,9 @@
       # Linux (Hyprland): home-manager switch --flake .#hyprland
       "hyprland" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [./home.nix ./programs/hyprland.nix ./programs/waybar.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default vicinae.homeManagerModules.default];
+        modules = [./home.nix herdrModule ./programs/hyprland.nix ./programs/waybar.nix sops-nix.homeManagerModules.sops spicetify-nix.homeManagerModules.default textfox.homeManagerModules.default vicinae.homeManagerModules.default];
         extraSpecialArgs = {
-          inherit nixvim-config spicetify-nix llm-agents herdr;
+          inherit nixvim-config spicetify-nix llm-agents;
           system = "x86_64-linux";
           features = [];
           username = "abrar";
