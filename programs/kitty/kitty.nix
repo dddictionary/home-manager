@@ -46,6 +46,9 @@ in
       # Sending ESC-b/ESC-f avoids tmux treating these as M-Left/M-Right pane switches.
       "alt+left" = "send_text all \\x1bb";
       "alt+right" = "send_text all \\x1bf";
+      # Cmd+Arrow moves to the beginning/end of the line (readline Ctrl-A/Ctrl-E).
+      "super+left" = "send_text all \\x01";
+      "super+right" = "send_text all \\x05";
       "shift+enter" = "send_text all \\x1b[13;2u";
       "ctrl+shift+w" = "close_tab";
       "super+t" = "new_tab";
