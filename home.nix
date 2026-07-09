@@ -9,6 +9,7 @@
     ./programs/git.nix
     ./programs/terminal.nix
     ./programs/tmux/tmux.nix
+    ./programs/herdr/herdr.nix
     ./programs/kitty/kitty.nix
     ./programs/fastfetch.nix
     ./programs/zsh.nix
