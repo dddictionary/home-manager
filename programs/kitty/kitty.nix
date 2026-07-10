@@ -39,7 +39,10 @@ in
     keybindings = {
       "ctrl+backspace" = "send_text all \\x17";
       # Cmd+Delete clears the current input line in shells/tmux/TUIs (Pi/Claude).
-      "super+backspace" = "send_text all \\x01\\x0b";
+      # Ctrl-E then Ctrl-U (end-of-line, then kill-to-start) = clear whole line.
+      # NB: do NOT start this with Ctrl-A (\x01) — that is the herdr/tmux prefix,
+      # so the multiplexer would swallow it and the line would never clear.
+      "super+backspace" = "send_text all \\x05\\x15";
       # Option+Delete deletes the previous word (readline backward-kill-word).
       "alt+backspace" = "send_text all \\x1b\\x7f";
       # Make Option+Arrow behave like readline/zsh word navigation.
