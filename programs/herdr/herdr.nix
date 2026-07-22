@@ -26,6 +26,10 @@
     [keys]
     prefix = "ctrl+a"
 
+    # Pane splits
+    split_vertical = "prefix+|"       # split right (prefix + shift + \)
+    split_horizontal = "prefix+minus" # split below
+
     # Tabs within a space (tmux windows)
     switch_tab = "prefix+1..9"
     new_tab = "prefix+c"
