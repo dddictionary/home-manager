@@ -41,5 +41,11 @@
     next_workspace = "prefix+shift+j"   # cycle to next space
     previous_workspace = "prefix+shift+k" # cycle to previous space
     new_workspace = "prefix+shift+n"
+
+    # Render inline images (kitty graphics protocol) from agents / icat.
+    # Experimental + off by default in herdr; required for images to show
+    # through the multiplexer. Host terminal (kitty) already supports it.
+    [experimental]
+    kitty_graphics = true
   '';
 }
