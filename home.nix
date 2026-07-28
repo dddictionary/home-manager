@@ -63,6 +63,7 @@
   ];
 
   home.pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
+    enable = true;
     name = "macOS";
     package = pkgs.apple-cursor;
     size = 24;
@@ -75,6 +76,7 @@
       name = "Kanagawa-BL";
       package = pkgs.kanagawa-gtk-theme;
     };
+    gtk4.theme = config.gtk.theme;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
@@ -83,7 +85,7 @@
 
   qt = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "gtk3";
   };
 
   home.sessionVariables = {

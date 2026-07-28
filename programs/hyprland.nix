@@ -13,8 +13,8 @@
       settings = {
         # Monitors
         monitor = [
-          "DP-1, 1920x1080@239.76, 0x0, 1"
-          "HDMI-A-1, 1920x1080@165, 1920x0, 1"
+          "DP-1, 1920x1080@239.76, 1920x0, 1"
+          "HDMI-A-1, 1920x1080@165, 0x0, 1"
         ];
 
         # Programs
@@ -129,7 +129,7 @@
         # Input
         input = {
           kb_layout = "us";
-          kb_options = "ctrl:nocaps";
+          kb_options = "ctrl:nocaps,altwin:swap_alt_win";
           follow_mouse = 1;
           sensitivity = 0;
 
