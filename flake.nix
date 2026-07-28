@@ -9,7 +9,9 @@
     };
     nixvim-config = {
       url = "github:dddictionary/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # Intentionally do NOT `follows = "nixpkgs"`: nixvim inside emits a
+      # "nixpkgs.source default affected by follows" warning otherwise, and
+      # lets it pin its own compatible nixpkgs.
     };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -21,7 +23,9 @@
     };
     vicinae = {
       url = "github:vicinaehq/vicinae";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # Intentionally do NOT `follows = "nixpkgs"`: vicinae's cachix
+      # (vicinae.cachix.org) builds against its own pinned nixpkgs.
+      # Overriding it changes the derivation hash and misses cache.
     };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";

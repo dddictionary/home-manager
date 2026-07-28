@@ -7,14 +7,15 @@
       enable = true;
       # Use the NixOS-provided package to avoid building twice
       package = null;
+      configType = "hyprlang";
 
       xwayland.enable = true;
 
       settings = {
         # Monitors
         monitor = [
-          "DP-1, 1920x1080@239.76, 1920x0, 1"
-          "HDMI-A-1, 1920x1080@165, 0x0, 1"
+          "DP-2, 1920x1080@239.76, 0x0, 1"
+          "HDMI-A-1, 1920x1080@165, 1920x0, 1"
         ];
 
         # Programs
@@ -280,7 +281,7 @@
       awww
     ];
 
-    services.vicinae = {
+    programs.vicinae = {
       enable = true;
       systemd = {
         enable = true;
