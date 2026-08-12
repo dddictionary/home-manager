@@ -1,5 +1,25 @@
 { config, pkgs, lib, nixvim-config ? null, llm-agents ? null, system, self ? null, features ? [], username, homeDirectory, ... }:
 
+let
+  kanagawaGtkTheme = pkgs.stdenvNoCC.mkDerivation {
+    pname = "kanagawa-gtk-theme";
+    version = "0-unstable-2023-07-03";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "Fausto-Korpsvart";
+      repo = "Kanagawa-GKT-Theme";
+      rev = "35936a1e3bbd329339991b29725fc1f67f192c1e";
+      hash = "sha256-BZRmjVas8q6zsYbXFk4bCk5Ec/3liy9PQ8fqFGHAXe0=";
+    };
+
+    nativeBuildInputs = [ pkgs.gtk3 ];
+
+    installPhase = ''
+      mkdir -p $out/share/themes
+      cp -a themes/* $out/share/themes
+    '';
+  };
+in
 {
   home.username = username;
   home.homeDirectory = homeDirectory;
@@ -74,7 +94,7 @@
     enable = true;
     theme = {
       name = "Kanagawa-BL";
-      package = pkgs.kanagawa-gtk-theme;
+      package = kanagawaGtkTheme;
     };
     gtk4.theme = config.gtk.theme;
     iconTheme = {
