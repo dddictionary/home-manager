@@ -2,18 +2,18 @@
 
 buildNpmPackage rec {
   pname = "actual-cli";
-  version = "26.5.2";
+  version = "26.10.0";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/@actual-app/cli/-/cli-${version}.tgz";
-    hash = "sha512-xWa0jlq7a2XGIE1x6VUaeqkp8YZvxaGWlRX9yLKveDKZ9c294Y6U2Odk0+vGqjhhVwtnSn7Fkh61tBbaFCZMyg==";
+    hash = "sha512-EzkXX/fRzzWvzz7sHrCpojiuMxTWN6NhmJqzTcZkOoadraVgzdvo3knnvIRoMKbAZMGipPRcPZmCjju4g4wdog==";
   };
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
   '';
 
-  npmDepsHash = "sha256-x29HUG4a5tjCjkrKSC+NTmmgJds/mT01qSHvFUrifyw=";
+  npmDepsHash = "sha256-4M3ewJfWF0skTgw4jhNUGTQGM8LDLYeGTqq1V5tal/4=";
 
   dontNpmBuild = true;
 
