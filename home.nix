@@ -146,6 +146,8 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
+
   # Textfox Firefox theme (module wired in flake.nix). Apply to the default-release
   # profile — that's the one profiles.ini marks as Default for this install.
   textfox = {
