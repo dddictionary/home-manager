@@ -17,7 +17,6 @@
         vesktop
         zoom-us
         styluslabs-write-bin
-        texliveFull
         texstudio
         libreoffice
         obs-studio

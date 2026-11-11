@@ -50,6 +50,7 @@ in {
     ./programs/fastfetch.nix
     ./programs/zsh.nix
     ./programs/yazi.nix
+    ./programs/latex.nix
     ./programs/claude/claude.nix
     ./programs/pi/pi.nix
     ./programs/actual
@@ -166,7 +167,7 @@ in {
   # Let Nix authenticate GitHub fetches without putting the token in the Nix store.
   # The included file is generated locally from `gh auth token` during activation.
   xdg.configFile."nix/nix.conf".text = ''
-    experimental-features = nix-command flakes
+    extra-experimental-features = nix-command flakes
     !include ${config.xdg.configHome}/nix/access-tokens.conf
   '';
 
