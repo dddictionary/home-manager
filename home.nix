@@ -51,6 +51,7 @@ in {
     ./programs/zsh.nix
     ./programs/yazi.nix
     ./programs/latex.nix
+    ./programs/rust.nix
     ./programs/claude/claude.nix
     ./programs/pi/pi.nix
     ./programs/actual
