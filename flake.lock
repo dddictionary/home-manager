@@ -319,11 +319,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1794925867,
-        "narHash": "sha256-Kj7HyqM29DPFZoJm1663F2iHO3Jn9a5sR+8BaqgkYkE=",
+        "lastModified": 1794939220,
+        "narHash": "sha256-3LajTTaZA2ZEIuaoniTcVcaZggHZUuTckmztiQMDx2Q=",
         "owner": "dddictionary",
         "repo": "nixvim",
-        "rev": "062a4874e0d76a87b6154bb9d2a7b98e40b6b781",
+        "rev": "9c190d02f07a3e84eb9c8c38fb95376e2876f892",
         "type": "github"
       },
       "original": {
